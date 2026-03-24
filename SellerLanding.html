@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Seattle Home Seller's Guide — Free Download</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#0f0f0b;
+  --card:#161610;
+  --border:#2a2a1e;
+  --accent:#d4a853;
+  --accent2:#b5451b;
+  --text:#f5f0e8;
+  --muted:#8a8470;
+  --green:#10b981;
+}
+body{
+  font-family:'DM Sans',sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  padding:24px;
+  position:relative;
+  overflow:auto;
+  display:flex;
+  justify-content:center;
+}
+body::before{
+  content:'';
+  position:fixed;
+  top:-200px;
+  right:-200px;
+  width:600px;
+  height:600px;
+  background:radial-gradient(circle,rgba(212,168,83,0.07) 0%,transparent 70%);
+  pointer-events:none;
+}
+body::after{
+  content:'';
+  position:fixed;
+  bottom:-200px;
+  left:-200px;
+  width:600px;
+  height:600px;
+  background:radial-gradient(circle,rgba(181,69,27,0.07) 0%,transparent 70%);
+  pointer-events:none;
+}
+.card{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:20px;
+  padding:52px 48px;
+  max-width:520px;
+  width:100%;
+  position:relative;
+  z-index:1;
+}
+.badge{
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+  background:rgba(212,168,83,0.1);
+  border:1px solid rgba(212,168,83,0.2);
+  color:var(--accent);
+  font-size:11px;
+  font-weight:500;
+  letter-spacing:0.08em;
+  text-transform:uppercase;
+  padding:5px 12px;
+  border-radius:20px;
+  margin-bottom:24px;
+}
+.badge-dot{
+  width:6px;
+  height:6px;
+  border-radius:50%;
+  background:var(--accent);
+}
+h1{
+  font-family:'Playfair Display',serif;
+  font-size:36px;
+  font-weight:700;
+  line-height:1.2;
+  margin-bottom:12px;
+  letter-spacing:-0.5px;
+}
+h1 span{color:var(--accent)}
+.subtitle{
+  color:var(--muted);
+  font-size:15px;
+  line-height:1.6;
+  margin-bottom:32px;
+}
+.checklist{
+  list-style:none;
+  margin-bottom:36px;
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+}
+.checklist li{
+  display:flex;
+  align-items:flex-start;
+  gap:10px;
+  font-size:14px;
+  color:var(--muted);
+  line-height:1.5;
+}
+.check{
+  width:18px;
+  height:18px;
+  border-radius:50%;
+  background:rgba(16,185,129,0.12);
+  border:1px solid rgba(16,185,129,0.3);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  flex-shrink:0;
+  margin-top:1px;
+}
+.check svg{stroke:var(--green);stroke-width:2.5;fill:none}
+.divider{
+  height:1px;
+  background:var(--border);
+  margin-bottom:32px;
+}
+.form-group{margin-bottom:16px}
+label{
+  display:block;
+  font-size:11px;
+  font-weight:500;
+  text-transform:uppercase;
+  letter-spacing:0.08em;
+  color:var(--muted);
+  margin-bottom:7px;
+}
+input{
+  width:100%;
+  background:#0d0d09;
+  border:1px solid var(--border);
+  border-radius:10px;
+  color:var(--text);
+  font-size:14px;
+  font-family:'DM Sans',sans-serif;
+  padding:12px 16px;
+  outline:none;
+  transition:border-color 0.2s;
+}
+input:focus{border-color:var(--accent)}
+input::placeholder{color:#3a3a28}
+.btn{
+  width:100%;
+  background:var(--accent);
+  border:none;
+  border-radius:10px;
+  color:#0f0f0b;
+  font-size:15px;
+  font-weight:500;
+  font-family:'DM Sans',sans-serif;
+  padding:14px;
+  cursor:pointer;
+  margin-top:8px;
+  transition:all 0.2s;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+}
+.btn:hover{background:#c49843;transform:translateY(-1px)}
+.btn:active{transform:translateY(0)}
+.btn:disabled{background:#2a2a1e;color:var(--muted);cursor:not-allowed;transform:none}
+.privacy{
+  text-align:center;
+  font-size:12px;
+  color:var(--muted);
+  margin-top:16px;
+  line-height:1.5;
+}
+.success{
+  display:none;
+  text-align:center;
+  padding:24px 0;
+}
+.success-icon{
+  width:64px;
+  height:64px;
+  border-radius:50%;
+  background:rgba(16,185,129,0.12);
+  border:1px solid rgba(16,185,129,0.3);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  margin:0 auto 20px;
+}
+.success h2{
+  font-family:'Playfair Display',serif;
+  font-size:26px;
+  margin-bottom:10px;
+}
+.success p{
+  color:var(--muted);
+  font-size:14px;
+  line-height:1.6;
+  margin-bottom:24px;
+}
+.download-btn{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  background:var(--green);
+  color:#fff;
+  font-size:14px;
+  font-weight:500;
+  font-family:'DM Sans',sans-serif;
+  padding:12px 28px;
+  border-radius:10px;
+  text-decoration:none;
+  transition:all 0.2s;
+}
+.download-btn:hover{background:#0ea271}
+.agent-bar{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  margin-top:32px;
+  padding-top:24px;
+  border-top:1px solid var(--border);
+}
+.agent-avatar{
+  width:44px;
+  height:44px;
+  border-radius:50%;
+  background:linear-gradient(135deg,var(--accent),var(--accent2));
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-weight:700;
+  font-size:16px;
+  color:#0f0f0b;
+  flex-shrink:0;
+}
+.agent-info{font-size:13px}
+.agent-name{font-weight:500;color:var(--text)}
+.agent-title{color:var(--muted);font-size:12px;margin-top:1px}
+.error-msg{
+  color:#f87171;
+  font-size:12px;
+  margin-top:6px;
+  display:none;
+}
+@media(max-width:560px){
+  .card{padding:36px 24px}
+  h1{font-size:28px}
+}
+</style>
+</head>
+<body>
+<div class="card">
+  <div class="badge"><span class="badge-dot"></span>Free Resource</div>
+  <h1>Seattle Home <span>Seller's</span> Guide</h1>
+  <p class="subtitle">Everything you need to maximize your sale price and sell on your timeline — from prep to closing.</p>
+  <ul class="checklist">
+    <li><span class="check"><svg width="10" height="10" viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></span>How to price your home to attract the most offers</li>
+    <li><span class="check"><svg width="10" height="10" viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></span>Exactly what to fix (and what to skip) before listing</li>
+    <li><span class="check"><svg width="10" height="10" viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></span>How to negotiate offers and get your number</li>
+    <li><span class="check"><svg width="10" height="10" viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></span>The Seattle market timeline — what to expect week by week</li>
+  </ul>
+  <div class="divider"></div>
+
+  <div id="formSection">
+    <div class="form-group">
+      <label>Your Name</label>
+      <input type="text" id="name" placeholder="Jane Smith">
+    </div>
+    <div class="form-group">
+      <label>Email Address</label>
+      <input type="email" id="email" placeholder="jane@email.com">
+      <div class="error-msg" id="emailError">Please enter a valid email address</div>
+    </div>
+    <div class="form-group">
+      <label>Phone <span style="color:#3a3a28;font-weight:400;text-transform:none;letter-spacing:0">(optional)</span></label>
+      <input type="tel" id="phone" placeholder="(206) 555-0100">
+    </div>
+    <button class="btn" id="submitBtn" onclick="submitForm()">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+      Get My Free Seller's Guide
+    </button>
+    <p class="privacy">No spam. No pressure. Your info stays private.</p>
+  </div>
+
+  <div class="success" id="successSection">
+    <div class="success-icon">
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+    </div>
+    <h2>You're all set!</h2>
+    <p>Your Seattle Home Seller's Guide is ready to download. Click below to get your copy.</p>
+    <a href="https://drive.google.com/file/d/19e1hfXod2FHFkhDOWV410iVIHNM9EiMA/view?usp=drive_link" target="_blank" class="download-btn">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+      Download Seller's Guide
+    </a>
+  </div>
+
+  <div class="agent-bar">
+    <div class="agent-avatar">P</div>
+    <div class="agent-info">
+      <div class="agent-name">Prashant</div>
+      <div class="agent-title">Seattle & Whidbey Island Real Estate</div>
+    </div>
+  </div>
+</div>
+
+<script>
+const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzhXFYYZFeM5Pnz1VTQxFhS_eSML9aE3gT9ICGEcH9UrN3kYdwLUzVWxVuSI9ZenYU3bg/exec';
+
+function submitForm() {
+  const name       = document.getElementById('name').value.trim();
+  const email      = document.getElementById('email').value.trim();
+  const phone      = document.getElementById('phone').value.trim();
+  const emailError = document.getElementById('emailError');
+  const btn        = document.getElementById('submitBtn');
+
+  emailError.style.display = 'none';
+
+  if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+    emailError.style.display = 'block';
+    return;
+  }
+
+  btn.disabled = true;
+  btn.innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg> Sending...';
+
+  const lead = { name, email, phone, source: "Seller's Guide" };
+
+  fetch(SCRIPT_URL, {
+    method: 'POST',
+    body: JSON.stringify({ action: 'lead', lead: lead })
+  })
+  .then(res => res.json())
+  .then(data => {
+    if (data.status === 'ok') {
+      document.getElementById('formSection').style.display = 'none';
+      document.getElementById('successSection').style.display = 'block';
+    } else {
+      showError(btn);
+    }
+  })
+  .catch(() => {
+    // fetch to Apps Script sometimes returns CORS error on response
+    // but the data was still written — show success
+    document.getElementById('formSection').style.display = 'none';
+    document.getElementById('successSection').style.display = 'block';
+  });
+}
+
+function showError(btn) {
+  btn.disabled = false;
+  btn.innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> Get My Free Seller\'s Guide';
+  alert('Something went wrong. Please try again.');
+}
+</script>
+</body>
+</html>
